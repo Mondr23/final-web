@@ -1,0 +1,68 @@
+{% extends 'base_admin.html' %}
+{% block title %}Manage Data{% endblock %}
+{% block content %}
+<!-- Main Content -->
+<div class="container mt-4">
+    <h1 class="text-center" tabindex="0">Admin Dashboard</h1>
+
+    <!-- Statistics Section -->
+    <div class="row my-4" role="region" aria-labelledby="stats-title">
+        <h2 id="stats-title" class="sr-only">Statistics Overview</h2>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title" tabindex="0">Total Users</h5>
+                    <p class="card-text display-4" tabindex="0">{{ total_users }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title" tabindex="0">Admin Users</h5>
+                    <p class="card-text display-4" tabindex="0">{{ admin_users }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title" tabindex="0">Total Listings</h5>
+                    <p class="card-text display-4" tabindex="0">{{ total_listings }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <h5 class="card-title" tabindex="0">Active Users</h5>
+                    <p class="card-text display-4" tabindex="0">{{ active_users }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Listings by Category Chart -->
+    <div class="mt-4" role="region" aria-labelledby="category-chart-title">
+        <h2 id="category-chart-title" tabindex="0">Listings by Category</h2>
+        <canvas id="listingsByCategoryChart" aria-label="Bar chart showing listings by category" role="img"></canvas>
+    </div>
+
+    <!-- Listings by Location Chart -->
+    <div class="mt-4" role="region" aria-labelledby="location-chart-title">
+        <h2 id="location-chart-title" tabindex="0">Listings by Location</h2>
+        <canvas id="listingsByLocationChart" aria-label="Bar chart showing listings by location" role="img"></canvas>
+    </div>
+</div>
+
+<!-- Inline Scripts -->
+<script>
+    const categoryLabels = {{ category_labels | tojson }};
+    const categoryCounts = {{ category_counts | tojson }};
+    const locationLabels = {{ location_labels | tojson }};
+    const locationCounts = {{ location_counts | tojson }};
+</script>
+<!-- JS Scripts -->
+<script src="{{ url_for('static', filename='js/admin_dash.js') }}"></script>
+
+{% endblock %}

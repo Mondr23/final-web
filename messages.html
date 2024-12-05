@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}Messages{% endblock %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/messages.css') }}">
+{% block content %}
+<div class="container py-4">
+    <div class="card shadow-lg border-0">
+        <!-- Navbar for Messages -->
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <h4 class="mb-0" id="messagesHeader">Messages</h4>
+        </div>
+        <div class="card-body">
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-tabs" id="messageTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="received-tab" data-bs-toggle="tab" data-bs-target="#received" type="button" role="tab" aria-controls="received" aria-selected="true">
+                        Received
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="sent-tab" data-bs-toggle="tab" data-bs-target="#sent" type="button" role="tab" aria-controls="sent" aria-selected="false">
+                        Sent
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="new-message-tab" data-bs-toggle="tab" data-bs-target="#new-message" type="button" role="tab" aria-controls="new-message" aria-selected="false">
+                        New Message
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content mt-3" id="messageTabsContent">
+                <!-- Received Messages -->
+                <div class="tab-pane fade show active" id="received" role="tabpanel" aria-labelledby="received-tab">
+                    <div id="receivedMessages" class="messages-container" aria-live="polite" aria-busy="false">
+                        <!-- Received messages dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Sent Messages -->
+                <div class="tab-pane fade" id="sent" role="tabpanel" aria-labelledby="sent-tab">
+                    <div id="sentMessages" class="messages-container" aria-live="polite" aria-busy="false">
+                        <!-- Sent messages dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- New Message Form -->
+                <div class="tab-pane fade" id="new-message" role="tabpanel" aria-labelledby="new-message-tab">
+                    <form id="newMessageForm" class="mt-3" aria-labelledby="newMessageFormHeading">
+                        <div class="mb-3">
+                            <label for="recipientUsername" class="form-label">Recipient Username</label>
+                            <input type="text" id="recipientUsername" class="form-control" placeholder="Enter username" required aria-required="true">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newMessageContent" class="form-label">Message</label>
+                            <textarea id="newMessageContent" class="form-control" rows="3" placeholder="Type your message..." required aria-required="true"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100" aria-label="Send new message">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reply Modal -->
+<div id="replyModal" class="modal fade" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="replyModalLabel">Reply to Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="replyMessagePreview" class="text-muted mb-3" aria-live="polite"></p>
+                <textarea id="replyMessageContent" class="form-control" rows="3" placeholder="Type your reply..." required aria-required="true"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" id="sendReplyBtn" class="btn btn-primary">Send Reply</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
+{% endblock %}

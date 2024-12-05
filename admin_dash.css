@@ -1,0 +1,77 @@
+/* Root Variables */
+:root {
+    --primary-color: #4facfe; /* Teal */
+    --secondary-color: #264653; /* Dark Navy */
+    --background-color: #f4f4f4; /* Light Gray */
+    --text-dark: #333; /* Dark Text */
+    --text-light: #333; /* Light Text */
+    --highlight-color: #e76f51; /* Coral for highlights */
+}
+
+
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.navbar-nav {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.navbar-nav a:hover {
+    color: var(--highlight-color);
+}
+
+
+/* Footer */
+.footer {
+    background-color: #4facfe;
+    color: #4facfe;
+    padding: 80px;
+    text-align: center;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+
